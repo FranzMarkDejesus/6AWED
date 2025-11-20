@@ -1,0 +1,38 @@
+<!-- Text Interpolation -->
+<h2>Text Interpolation</h2>
+<p>{{ message }}</p>
+
+<hr>
+
+<!-- Property Binding -->
+<h2>Property Binding</h2>
+<img [width]="imageWidth" src="https://via.placeholder.com/250" />
+
+<hr>
+
+<!-- Style Binding -->
+<h2>Style Binding</h2>
+<p [style.color]="textColor">This text is controlled by style binding.</p>
+
+<hr>
+
+<!-- Class Binding -->
+<h2>Class Binding</h2>
+<p [class.highlight]="isHighlighted">
+  This paragraph is highlighted dynamically.
+</p>
+
+<hr>
+
+<!-- Two-Way Data Binding -->
+<h2>Two-Way Data Binding (ngModel)</h2>
+<input type="text" [(ngModel)]="yourName" placeholder="Enter your name">
+<p>Your name is: {{ yourName }}</p>
+
+<hr>
+
+<!-- Event Binding -->
+<h2>Event Binding</h2>
+<button (click)="increase()">Increase Count</button>
+<button (click)="decrease()">Decrease Count</button>
+<p>Count: {{ count }}</p>
