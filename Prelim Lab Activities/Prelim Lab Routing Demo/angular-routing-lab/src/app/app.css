@@ -1,0 +1,33 @@
+nav {
+  background-color: #333;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* subtle shadow */
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease; /* smooth color transition */
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #ff9800; /* orange underline effect */
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff9800; /* highlight on hover */
+}
+
+nav a:hover::after {
+  width: 100%; /* animated underline expands */
+}
