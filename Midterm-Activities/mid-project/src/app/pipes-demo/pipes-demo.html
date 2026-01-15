@@ -1,0 +1,62 @@
+<p>pipes-demo works!</p>
+
+
+<p>Current date is: {{presentDate | date }} </p>
+
+<div>
+  This is a short date :- {{presentDate | date: 'shortDate'}} <br/>
+  This line shows the full date :- {{presentDate | date: 'fullDate'}} <br/>
+  this wll show a formatted date :- {{presentDate | date: 'M/dd/yyyy'}} <br/>
+  This indicated the hours and minutes :- {{presentDate | date: 'h/mm'}} <br/>
+  Franz Mark De jesus
+</div>
+
+<br/>
+
+<div>
+  Date with uppercase :- {{presentDate | date: 'fullDate' | uppercase}} <br/>
+  Date with lowercase :- {{presentDate | date: 'medium' | lowercase}} <br/>
+</div>
+
+<br/>
+
+<div>
+   Seconds changing in Time: {{ times$ | async | date:'mediumTime' }}
+</div>
+
+<br/>
+
+<h3> Currency pipe </h3>
+<p> {{ price | currency:'':true}}</p>
+<p> {{ price | currency:'INR'}}</p>
+
+<br/>
+
+<div>
+  <h3>Start index:-{{Fruits | slice:2}}</h3>
+  <h4>Start adn End index:- {{Fruits | slice:1:4}}</h4>
+  <h5>Negative index:-{{Fruits | slice:-2}}</h5>
+  <h6>Negative start and end index:- {{Fruits | slice:-4:-2}}</h6>
+</div>
+
+<br/>
+
+<div style="align:center">
+<p>Apply formatting:- {{ decimalNum1 | number:'3.1' }}</p>
+<p>Apply formatting:- {{ decimalNum1 | number:'2.1-4' }}</p>
+</div>
+
+<div>
+  <p>Reverse string of 'Angular': {{ 'Angular' | reverseString }}</p>
+</div>
+
+<div>
+    <p>Exclamation (3 times) on 'Wow': {{ 'Wow' | exclamation:3 }}</p>
+</div>
+
+<div>
+   <p>Filter Fruits containing '{{ filterTerm }}':</p>
+  <ul>
+    <li *ngFor="let fruit of Fruits | filterFruits:filterTerm">{{ fruit }}</li>
+  </ul>
+</div>
