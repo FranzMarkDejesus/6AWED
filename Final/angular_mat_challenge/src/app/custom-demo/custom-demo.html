@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <label>
+    Username:
+    <input type="text" formControlName="username" />
+  </label>
+  <div *ngIf="f.username.touched && f.username.invalid" class="error">
+    Username: 4-12 chars, letters, numbers, underscore only.
+  </div>
+
+  <label>
+    Email:
+    <input type="email" formControlName="email" />
+  </label>
+  <div *ngIf="f.email.touched && f.email.invalid" class="error">
+    Please enter a valid email.
+  </div>
+
+  <label>
+    Password:
+    <input type="password" formControlName="password" />
+  </label>
+  <div *ngIf="f.password.touched && f.password.invalid" class="error">
+    Password: min 8 chars, with upper, lower, number.
+  </div>
+
+  <fieldset>
+    <legend>Gender:</legend>
+    <label><input type="radio" formControlName="gender" value="male" /> Male</label>
+    <label><input type="radio" formControlName="gender" value="female" /> Female</label>
+  </fieldset>
+
+  <label>
+    Status:
+    <select formControlName="status">
+      <option value="Permanent">Permanent</option>
+      <option value="Probationary">Probationary</option>
+    </select>
+  </label>
+
+  <label>
+    Comments:
+    <textarea formControlName="comments" rows="4"></textarea>
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>

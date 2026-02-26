@@ -1,0 +1,38 @@
+<form [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+
+  <label for="name">Name:</label>
+  <input id="name" type="text" formControlName="name" placeholder="Enter your name">
+  <div *ngIf="f.name.touched && f.name.invalid" class="error">
+    Name is required (min 3 characters)
+  </div>
+
+  <label for="email">Email:</label>
+  <input id="email" type="email" formControlName="email" placeholder="Enter your email">
+  <div *ngIf="f.email.touched && f.email.invalid" class="error">
+    Enter a valid email
+  </div>
+
+  <label for="phone">Phone:</label>
+  <input id="phone" type="text" formControlName="phone" placeholder="Enter 10-digit phone number">
+  <div *ngIf="f.phone.touched && f.phone.invalid" class="error">
+    Enter a 10-digit phone number
+  </div>
+
+  <label>Gender:</label>
+  <div class="radio-group">
+    <label><input type="radio" value="male" formControlName="gender"> Male</label>
+    <label><input type="radio" value="female" formControlName="gender"> Female</label>
+  </div>
+
+  <label for="status">Status:</label>
+  <select id="status" formControlName="status">
+    <option value="Permanent">Permanent</option>
+    <option value="Probationary">Probationary</option>
+  </select>
+
+  <label for="comments">Comments:</label>
+  <textarea id="comments" formControlName="comments" rows="4" placeholder="Add your comments"></textarea>
+
+  <button type="submit" [disabled]="demoForm.invalid">Submit</button>
+
+</form>
