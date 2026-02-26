@@ -1,0 +1,84 @@
+<div [class.dark-mode]="isDarkMode" class="main-wrapper">
+  <div class="container">
+    <mat-card class="form-card">
+      <div class="header-row">
+        <h2>Add New User</h2>
+        <mat-slide-toggle [(ngModel)]="isDarkMode" color="primary">
+          {{ isDarkMode ? 'Dark' : 'Light' }} Mode
+        </mat-slide-toggle>
+      </div>
+
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="userName" required />
+          <mat-error *ngIf="formdata.get('userName')?.hasError('required')">Name is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+          <mat-error *ngIf="formdata.get('email')?.hasError('email')">Invalid email format.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required />
+          <mat-error *ngIf="formdata.get('password')?.hasError('required')">Password is required.</mat-error>
+          <mat-error *ngIf="formdata.get('password')?.hasError('pattern')">
+            Must start with a letter and be alphanumeric.
+          </mat-error>
+          <mat-error *ngIf="formdata.get('password')?.hasError('minlength')">
+            Minimum 8 characters required.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="field-group">
+          <label class="group-label">Gender</label>
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-radio-button value="Other">Other</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formdata.get('birthDate')?.hasError('tooYoung')">
+            Must be born in 2006 or earlier.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="field-group">
+          <label class="group-label">Angular Skill Level</label>
+          <mat-slider min="1" max="10" step="1" discrete showTickMarks>
+            <input matSliderThumb formControlName="angularSkillLevel">
+          </mat-slider>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="USA">USA</mat-option>
+            <mat-option value="India">India</mat-option>
+            <mat-option value="UK">UK</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="terms" color="primary">
+          I accept the terms and conditions
+        </mat-checkbox>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="formdata.invalid">
+            SUBMIT
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

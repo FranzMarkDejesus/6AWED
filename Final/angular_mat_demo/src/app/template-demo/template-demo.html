@@ -1,0 +1,89 @@
+<form (ngSubmit)="onSubmit()" #myForm="ngForm" class="form-container">
+
+  <!-- Username -->
+  <input
+    class="input-box"
+    type="text"
+    name="username"
+    [(ngModel)]="username"
+    placeholder="Enter username"
+    required>
+
+  <!-- Email -->
+  <input
+    class="input-box"
+    type="email"
+    name="email"
+    [(ngModel)]="email"
+    placeholder="Enter email"
+    required>
+
+  <!-- Password -->
+  <input
+    class="input-box"
+    type="password"
+    name="password"
+    [(ngModel)]="password"
+    placeholder="Enter password"
+    required
+    minlength="6">
+
+  <!-- Role Select -->
+  <select
+    class="input-box"
+    name="role"
+    [(ngModel)]="role"
+    required>
+    <option value="" disabled selected>Select role</option>
+    <option value="admin">Admin</option>
+    <option value="user">User</option>
+    <option value="guest">Guest</option>
+  </select>
+
+  <!-- Gender Radio Buttons -->
+  <div class="radio-group">
+    <label>Gender:</label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="gender" value="male" required>
+      Male
+    </label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="gender" value="female" required>
+      Female
+    </label>
+    <label>
+      <input type="radio" name="gender" [(ngModel)]="gender" value="other" required>
+      Other
+    </label>
+  </div>
+
+  <!-- Status Radio Buttons -->
+  <div class="radio-group">
+    <label>Status:</label>
+    <label>
+      <input type="radio" name="status" [(ngModel)]="status" value="permanent" required>
+      Permanent
+    </label>
+    <label>
+      <input type="radio" name="status" [(ngModel)]="status" value="probationary" required>
+      Probationary
+    </label>
+  </div>
+
+  <!-- Comments Textarea -->
+  <textarea
+    class="input-box"
+    name="comments"
+    [(ngModel)]="comments"
+    placeholder="Enter comments"
+    rows="4">
+  </textarea>
+
+  <!-- Submit Button -->
+  <input
+    class="btn"
+    type="submit"
+    value="Submit"
+    [disabled]="!myForm.valid">
+
+</form>

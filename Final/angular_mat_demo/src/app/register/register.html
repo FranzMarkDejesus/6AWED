@@ -1,0 +1,122 @@
+<mat-card class="registration-card">
+
+  <mat-card-header class="mat-card-header">
+    <mat-card-title>User Registration</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="mat-card-content">
+
+    <div class="form-container">
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+
+        <!-- Username -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Enter Username" formControlName="userName">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Enter Email" formControlName="email">
+          <mat-error *ngIf="formdata.controls['email'].invalid && formdata.controls['email'].touched">
+            Email is required and must be a valid email.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter Password" formControlName="password">
+          <mat-error *ngIf="formdata.controls['password'].invalid && formdata.controls['password'].touched">
+            Password is required and must be at least 8 characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Gender Radio Group -->
+        <div class="radio-group">
+          <label class="radio-label">Gender</label>
+          <mat-radio-group formControlName="gender" class="gender-radio-group">
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+            <mat-radio-button value="other">Other</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- Address -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Enter Address" formControlName="address">
+        </mat-form-field>
+
+        <!-- Birth Date -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Birth Date</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formdata.get('birthDate')?.hasError('required')">
+            Birth date is required.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Angular Skill Level Slider -->
+        <div class="slider-group">
+          <label class="slider-label">
+            Angular Skill Level: {{ formdata.get('angularSkillLevel')?.value }}
+          </label>
+          <mat-slider [min]="minSkillLevel" [max]="maxSkillLevel" [step]="1" [discrete]="true">
+            <input matSliderThumb formControlName="angularSkillLevel">
+          </mat-slider>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <mat-checkbox formControlName="terms">
+          I agree to the terms and conditions
+        </mat-checkbox>
+
+        <!-- Country Select -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="philippines">Philippines</mat-option>
+            <mat-option value="usa">United States</mat-option>
+            <mat-option value="uk">United Kingdom</mat-option>
+            <mat-option value="canada">Canada</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formdata.get('country')?.invalid && formdata.get('country')?.touched">
+            Country is required.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!formdata.valid">
+            Register
+          </button>
+
+          <button mat-stroked-button color="accent" type="button" (click)="formdata.reset()">
+            Reset
+          </button>
+        </div>
+
+        <!-- Display Output -->
+        <div *ngIf="submitted" class="output">
+          <p>
+            You have entered: <br>
+            Username: {{ userName }} <br>
+            Email: {{ email }} <br>
+            Password: {{ password }} <br>
+            Gender: {{ gender }} <br>
+            Address: {{ address }} <br>
+            Birth Date: {{ birthDate | date:'shortDate' }} <br>
+            Angular Skill Level: {{ angularSkillLevel }} <br>
+            Country: {{ country }}
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+  </mat-card-content>
+
+</mat-card>
